@@ -39,7 +39,7 @@ From the below output it seems that the `directory` parameter is probably vulner
 
 #### 2. LFI vulnerability discovery:
 
-Again, the language parameter seems vulnerable to LFI since every request being colored with green produces a different hash, a different content-length from the initial, and the keyword specified is found in the response:
+Again, the language parameter seems vulnerable to **LFI** since using `../etc/passwd` _etc.._ as payload, every request being colored with green produces a different hash, a different content-length from the initial, and the keyword specified is found in the response:
 
 ```python
 ./fdsploit.py -u 'http://127.0.0.1:8888/test/bWAPP/bWAPP/rlfi.php?language=fsd&action=go' -c 'PHPSESSID=a55475b0abccbf3b32fab4c95a98c3ab; security_level=0' -d 7 -k root -p /etc/passwd
