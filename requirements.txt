@@ -1,0 +1,10 @@
+bs4
+hashlib
+requests
+urlparse
+colorama
+argparse
+html5lib
+validators
+fake_useragent
+requests[security]
