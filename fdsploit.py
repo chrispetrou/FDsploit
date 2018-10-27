@@ -120,13 +120,13 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
                             print " ╚═[ Content-length ❯ {}".format(FG+str(contentLength)+S)
                             print " ╚═[ Page signature ❯ {}...{}".format(FG+pagehash[:5],FG+pagehash[-5:]+S)
                             if keyword:
-                                if keyword in ans.text: print '  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
+                                if keyword in ans.text: print '  ╚═❯ Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
                         else:
                             print " ╚═[ Content-length ❯ {}".format(FC+str(contentLength)+S)
                             print " ╚═[ Page signature ❯ {}...{}".format(pagehash[:5],pagehash[-5:])
                             # rare but not completely impossible...
                             if keyword:
-                                if keyword in ans.text: print '  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
+                                if keyword in ans.text: print '  ╚═❯ Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
                     else:
                         print "[ {} ❯ Payload: {}".format(FR+str(ans.status_code)+S, query)
                     counter += 1
