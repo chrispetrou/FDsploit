@@ -19,6 +19,7 @@ So far, there are only two lfi-shell built-in commands:
 *   The LFI-shell interface provides only the output of the file readed or the command issued and __not__ all the html code.
 *   __3__ different types of LFI-shells can be specified.
 *   Both GET/POST requests are supported.
+*   Automatic detection of GET parameters.
 *   Certain parameters can be specified for testing using wildcards (`*`).
 *   Optional session cookies can be specified and used.
 *   Automatic check for RCE using PHP functions can be performed.
