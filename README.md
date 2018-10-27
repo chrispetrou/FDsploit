@@ -4,7 +4,7 @@
 
 <img src="images/FDsploit.png" width="70%">
 
-`FDsploit` can be used to discover Local/Remote File Inclusion and directory traversal vulnerabilities automatically. In case an LFI vulnerability is found, `--lfishell` option can be used to exploit it. For now, __3__ different types of LFI shells are supported:
+`FDsploit` can be used to discover and exploit Local/Remote File Inclusion and directory traversal vulnerabilities automatically. In case an LFI vulnerability is found, `--lfishell` option can be used to exploit it. For now, __3__ different types of LFI shells are supported:
 
 *   `simple`: This type of shell allows user to read files easily without having to type the url everytime. __Also__ it only provides the output of the file and __not__ the whole html-source code of the page which makes it very useful.
 *   `expect`: This type of shell is a semi-interactive shell which allows user to execute commands through PHP's `expect://` wrapper.
