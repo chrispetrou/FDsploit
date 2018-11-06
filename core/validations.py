@@ -62,7 +62,7 @@ def validateURL(url):
 
 
 def validateProxy(proxy):
-    if not ':' in proxy:
+    if not ':' in proxy or proxy.count(':') != 1:
         raise ArgumentTypeError('\n{}[x] Proxy must be in the form: host:port{}\n'.format(FR,S))
     else:
         host, port = proxy.split(':')
