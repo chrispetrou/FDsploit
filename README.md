@@ -46,7 +46,7 @@ Again, the language parameter seems vulnerable to **LFI** since using `../etc/pa
 ```
 <img src="images/lfi.png" width="70%">
 
-#### 3. LFI simple shell:
+#### 3. LFI exploitation using simple shell:
 
 Exploiting the above LFI using `simple` shell:
 
@@ -68,7 +68,7 @@ Exploiting the above LFI using `simple` shell:
 
 ### TODO
 - [ ] Fix _note 4_ from above and make `--file` also work with POST parameters and cookies, using probably a `json` etc... file as input.
-- [ ] Add more built-in commands to `--lfishell` e.g. history etc...
+- [ ] Add more built-in commands to `--lfishell` e.g. _history etc..._
 
 ### Contributions & Feedback
 
