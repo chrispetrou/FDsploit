@@ -60,7 +60,9 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
         initialLength = getLen(init_req.content)
         initialHash   = hashpage(init_req.content)
         print "{0}[+]{1} Initial content length: {2}".format(BT,S,BT+str(initialLength)+S)
-        print "{0}[*]{3} {2}{1}{4}{3}{2} parameters detected:{3}".format(BT,FC,UN,S,len(params))
+        try:
+            print "{0}[*]{3} {2}{1}{4}{3}{2} parameters detected:{3}".format(BT,FC,UN,S,len(params))
+        except TypeError: pass
         if params:
             for p in params: print "• {}".format(p)
             for param in params:
