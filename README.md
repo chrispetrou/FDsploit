@@ -1,6 +1,10 @@
-# FDsploit [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FDsploit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg)](https://www.python.org/)
+<img src="images/logo.png" width="40%">
 
-`FDsploit` is a File inclusion & Directory Traversal fuzzer, enumeration & exploitation tool.
+##### A File Inclusion & Directory Traversal fuzzing, enumeration & exploitation tool.
+[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FDsploit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg)](https://www.python.org/) ![version](https://img.shields.io/badge/version-1.2-green.svg)
+* * *
+
+`FDsploit` menu:
 
 <img src="images/FDsploit.png" width="70%">
 
@@ -76,6 +80,10 @@ Feedback and contributions are welcome. If you find any bug or have a feature re
 
 ### Disclaimer
 >This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
+
+## Credits
+
+*   The FDsploit logo is made with [fontmeme.com](https://fontmeme.com/graffiti-fonts/)!
 
 ## License
 
