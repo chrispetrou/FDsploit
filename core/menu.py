@@ -21,11 +21,11 @@ def console():
 
     # MUTUALLY EXCLUSIVE REQUIRED PARAMETERS...
     required = parser.add_mutually_exclusive_group()
-    parser._optionals.title = '{}Required{}'.format(BT, S)
+    parser._optionals.title = '{}Required (one of the following){}'.format(BT, S)
 
     required.add_argument('-u', "--url", 
                         type=validateURL, 
-                        help='Specify a url', 
+                        help='Specify a url or', 
                         metavar='')
 
     required.add_argument('-f', "--file",

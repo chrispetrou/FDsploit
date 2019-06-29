@@ -22,8 +22,8 @@ usage: fdsploit.py [-u  | -f ] [-h] [-p] [-d] [-e {0,1,2}] [-t] [-b] [-x] [-c]
 
 FDsploit.py: Automatic (L|R)FI & directory traversal enumeration & exploitation.
 
-Required:
-  -u , --url            Specify a url
+Required (one of the following):
+  -u , --url            Specify a url or
   -f , --file           Specify a file containing urls
 
 Optional:
