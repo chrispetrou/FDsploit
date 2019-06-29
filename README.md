@@ -6,7 +6,49 @@
 
 `FDsploit` menu:
 
-<img src="images/FDsploit.png" width="70%">
+```
+$ python fdsploit.py -h
+
+     _____ ____          _     _ _
+    |   __|    \ ___ ___| |___|_| |_
+    |   __|  |  |_ -| . | | . | |  _|
+    |__|  |____/|___|  _|_|___|_|_|
+                    |_|...ver. 1.2
+                          Author: Christoforos Petrou (game0ver) !
+
+usage: fdsploit.py [-u  | -f ] [-h] [-p] [-d] [-e {0,1,2}] [-t] [-b] [-x] [-c]
+                   [-v] [--params  [...]] [-k] [-a] [--cmd]
+                   [--lfishell {None,simple,expect,input}]
+
+FDsploit.py: Automatic (L|R)FI & directory traversal enumeration & exploitation.
+
+Required:
+  -u , --url            Specify a url
+  -f , --file           Specify a file containing urls
+
+Optional:
+  -h, --help            Show this help message and exit
+  -p , --payload        Specify a payload-file to look for [default None]
+  -d , --depth          Specify max depth for payload [default 5]
+  -e {0,1,2}, --urlencode {0,1,2}
+                        Url-encode the payload [default: False]
+  -t , --tchar          Use a termination character ('%00' or '?') [default None]
+  -b, --b64             Use base64 encoding [default False]
+  -x , --proxy          Specify a proxy to use [form: host:port]
+  -c , --cookie         Specify a session-cookie to use [default None]
+  -v , --verb           Specify request type ('GET' or 'POST') [default GET]
+  --params  [ ...]      Specify POST parameters to use (applied only with POST requests)
+                        Form: param1:value1,param2:value2,...
+  -k , --keyword        Search for a certain keyword(s) on the response [default: None]
+  -a, --useragent       Use a random user-agent [default user-agent: FDsploit_1.2_agent]
+  --cmd                 Test for command execution through PHP functions [default command: None]
+  --lfishell {None,simple,expect,input}
+                        LFI pseudoshell [default None]
+
+[!] For More Details please read the README.md file!
+```
+
+<!-- <img src="images/FDsploit.png" width="70%"> -->
 
 `FDsploit` can be used to discover and exploit Local/Remote File Inclusion and directory traversal vulnerabilities automatically. In case an LFI vulnerability is found, `--lfishell` option can be used to exploit it. For now, __3__ different types of LFI shells are supported:
 
