@@ -1,7 +1,7 @@
 <img src="images/logo.png" width="40%">
 
 ##### A File Inclusion & Directory Traversal fuzzing, enumeration & exploitation tool.
-[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FDsploit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg)](https://www.python.org/) ![version](https://img.shields.io/badge/version-1.2-green.svg) [![Known Vulnerabilities](https://snyk.io//test/github/chrispetrou/FDsploit/badge.svg?targetFile=requirements.txt)](https://snyk.io//test/github/chrispetrou/FDsploit?targetFile=requirements.txt)
+[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FDsploit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svgstyle=flat&logo=python&logoColor=white)](https://www.python.org/) ![version](https://img.shields.io/badge/version-1.2-green.svg) [![Known Vulnerabilities](https://snyk.io//test/github/chrispetrou/FDsploit/badge.svg?targetFile=requirements.txt)](https://snyk.io//test/github/chrispetrou/FDsploit?targetFile=requirements.txt)
 * * *
 
 `FDsploit` menu:
