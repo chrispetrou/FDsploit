@@ -112,6 +112,8 @@ Exploiting the above LFI using `simple` shell:
 
 `pip install -r requirements.txt --upgrade --user`
 
+💡 `FDsploit` also comes pre-installed with [BlackArch Linux distribution](https://blackarch.org/).
+
 ### TODO
 - [ ] Fix _note 4_ from above and make `--file` also work with POST parameters and cookies, using probably a `json` etc... file as input.
 - [ ] Add more built-in commands to `--lfishell` e.g. _history etc..._
