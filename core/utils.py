@@ -8,8 +8,8 @@ __version__     = '1.2'
 import os
 import re
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+import importlib
+importlib.reload(sys)
 import time
 import warnings
 import requests
@@ -18,8 +18,8 @@ from core.colors import *
 from subprocess import call
 from requests import request
 from bs4 import BeautifulSoup
-from urllib import quote_plus
-from urlparse import urlparse
+from urllib.parse import quote
+from urllib.parse import urlparse
 warnings.filterwarnings("ignore")
 from fake_useragent import UserAgent
 
@@ -51,7 +51,7 @@ class Url(object):
             params = self.process(parsed.query)
             return params if params else None
         else:
-            return None            
+            return None
 
     def wildcardParams(self):
         """detect wildcard parameters if exist..."""
@@ -91,19 +91,19 @@ def req(verb, url, cookie, proxy, params=None, raw_data=None):
             else:
                 return request('POST', url, headers=headers, data=params, verify=False)
     except requests.exceptions.ProxyError:
-        print '{}[x] A proxy error occured!{}\n'.format(FR, S)
+        print('{}[x] A proxy error occured!{}\n'.format(FR, S))
         sys.exit(0)
     except requests.exceptions.TooManyRedirects:
-        print '{}[x] Too many redirects!{}\n'.format(FR, S)
+        print('{}[x] Too many redirects!{}\n'.format(FR, S))
         sys.exit(0)
     except requests.exceptions.Timeout:
-        print '{}[x] The request timed out!{}\n'.format(FR, S)
+        print('{}[x] The request timed out!{}\n'.format(FR, S))
         sys.exit(0)
     except requests.exceptions.SSLError:
-        print '{}[x] An SSL error occured!{}\n'.format(FR, S)
+        print('{}[x] An SSL error occured!{}\n'.format(FR, S))
         sys.exit(0)
     except requests.exceptions.ConnectionError:
-        print '{}[x] A connection error occured!{}\n'.format(FR, S)
+        print('{}[x] A connection error occured!{}\n'.format(FR, S))
         sys.exit(0)
 
 
@@ -124,11 +124,11 @@ def urlEncode(payload, times=1):
     """(2ble)-urlencodes the payload provided"""
     try:
         if times == 2:
-            return quote_plus(quote_plus(payload))
+            return quote(quote(payload))
         else:
-            return quote_plus(payload)
-    except Exception, error:
-        print '{}[x] Error:{} "{}"'.format(FR,S,error)
+            return quote(payload)
+    except Exception as error:
+        print('{}[x] Error:{} "{}"'.format(FR,S,error))
         sys.exit(0)
 
 
@@ -138,7 +138,7 @@ def inject(url, param, payload):
     if match != '':
         return url.replace(match, payload)
     else:
-        print "[x] Parameters must be in the form: param=VALUE"
+        print("[x] Parameters must be in the form: param=VALUE")
         sys.exit(0)
 
 
@@ -157,6 +157,9 @@ def createQuery(b64, uencoding, tchar, counter, payload):
 
 def hashpage(content):
     """computes page-content's sha256-hash"""
+    if type(content) is str:
+        return sha256(content.encode('utf-8')).hexdigest().lower()
+
     return sha256(content).hexdigest().lower()
 
 

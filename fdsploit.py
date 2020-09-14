@@ -6,8 +6,8 @@ __description__ = 'FDsploit.py: File inclusion & directory traversal fuzzer/enum
 __version__     = '1.2'
 
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+import importlib
+importlib.reload(sys)
 from core.menu import *
 from core.utils import *
 from core.colors import *
@@ -44,13 +44,13 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
     try:
         if verb == "GET":
             _url = Url(url)
-            print "\n{0}[+]{1} Url: {2}".format(BT, S, url)
+            print("\n{0}[+]{1} Url: {2}".format(BT, S, url))
             if custom:
                 params = _url.wildcardParams()
-                print "{0}[+]{1} Wildcard Mode: {2}ON{1}".format(BT,S,FG)
+                print("{0}[+]{1} Wildcard Mode: {2}ON{1}".format(BT,S,FG))
             else:
                 params = _url.detect()
-                print "{0}[+]{1} Wildcard Mode: {2}OFF{1}".format(BT,S,FR)
+                print("{0}[+]{1} Wildcard Mode: {2}OFF{1}".format(BT,S,FR))
         if verb == 'POST':
             if custom:
                 params = wildcardPostParams(parameters)
@@ -59,14 +59,14 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
         init_req      = req(verb, url, cookie, proxy, parameters)
         initialLength = getLen(init_req.content)
         initialHash   = hashpage(init_req.content)
-        print "{0}[+]{1} Initial content length: {2}".format(BT,S,BT+str(initialLength)+S)
+        print("{0}[+]{1} Initial content length: {2}".format(BT,S,BT+str(initialLength)+S))
         try:
-            print "{0}[*]{3} {2}{1}{4}{3}{2} parameters detected:{3}".format(BT,FC,UN,S,len(params))
+            print("{0}[*]{3} {2}{1}{4}{3}{2} parameters detected:{3}".format(BT,FC,UN,S,len(params)))
         except TypeError: pass
         if params:
-            for p in params: print "• {}".format(p)
+            for p in params: print("• {}".format(p))
             for param in params:
-                print "\n{0}[*]{1} {2}Checking {0}{2}{3}{1}{2} parameter{1}".format(FG,S,UN,param)
+                print("\n{0}[*]{1} {2}Checking {0}{2}{3}{1}{2} parameter{1}".format(FG,S,UN,param))
                 counter = 0
                 while counter <= depth:
                     query = createQuery(b64, uenc, tchar, counter, payload)
@@ -78,28 +78,28 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
                     if ans.status_code == 200:
                         pagehash = hashpage(ans.text)
                         contentLength = getLen(ans.text)
-                        print "{} ❯ Payload: {}".format(FC+str(ans.status_code)+S, FC+query+S)
+                        print("{} ❯ Payload: {}".format(FC+str(ans.status_code)+S, FC+query+S))
                         if contentLength != initialLength:
-                            print " ╚═[ Content-length ❯ {}".format(FG+str(contentLength)+S)
-                            print " ╚═[ Page signature ❯ {}...{}".format(FG+pagehash[:5],FG+pagehash[-5:]+S)
+                            print(" ╚═[ Content-length ❯ {}".format(FG+str(contentLength)+S))
+                            print(" ╚═[ Page signature ❯ {}...{}".format(FG+pagehash[:5],FG+pagehash[-5:]+S))
                             if keyword:
-                                if keyword in ans.text: print '  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
+                                if keyword in ans.text: print('  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S))
                         else:
-                            print " ╚═[ Content-length ❯ {}".format(FC+str(contentLength)+S)
-                            print " ╚═[ Page signature ❯ {}...{}".format(pagehash[:5],pagehash[-5:])
+                            print(" ╚═[ Content-length ❯ {}".format(FC+str(contentLength)+S))
+                            print(" ╚═[ Page signature ❯ {}...{}".format(pagehash[:5],pagehash[-5:]))
                             # rare but not completely impossible...
                             if keyword:
-                                if keyword in ans.text: print '  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S)
+                                if keyword in ans.text: print('  ╚═> Found Keyword: "{}{}{}"!'.format(FG, keyword, S))
                     else:
-                        print "[ {} ❯ Payload: {}".format(FR+str(ans.status_code)+S, query)
+                        print("[ {} ❯ Payload: {}".format(FR+str(ans.status_code)+S, query))
                     counter += 1
             if cmd:
                 for param in params:
-                    print "\n• {1}Trying command execution with '{0}{3}{2}{1}' parameter:{2}".format(BT, UN, S, param)
+                    print("\n• {1}Trying command execution with '{0}{3}{2}{1}' parameter:{2}".format(BT, UN, S, param))
                     test_php_expect(cmd, verb, url, param, cookie, proxy, parameters)
                     test_php_input(cmd, verb, url, param, cookie, proxy)
         else:
-            print "[x] No parameters detected!"
+            print("[x] No parameters detected!")
     except KeyboardInterrupt:
         sys.exit(0)
 
@@ -112,14 +112,14 @@ if __name__ == '__main__':
         if args.useragent: USER_AGENT = genUA()
         if args.proxy: HOST, PORT = args.proxy.split(':')
     if args.verb == 'POST' and args.params == None:
-        print "{}\n[!] POST request requires the parameters to be specified!\n"
+        print("{}\n[!] POST request requires the parameters to be specified!\n")
         sys.exit(0)
     if args.url:
         if args.lfishell:
             if args.url:
                 LFIshell(args.lfishell, args.url, args.verb, args.cookie, args.tchar, args.proxy, args.b64, int(args.urlencode), args.params)
             else:
-                print "\n{}[x] A url must be specified!{}".format(BR, S)
+                print("\n{}[x] A url must be specified!{}".format(BR, S))
                 sys.exit(0)
         else:
             # check if a custom parameter is specified --> if YES --> WILDCARD mode ON
@@ -130,15 +130,15 @@ if __name__ == '__main__':
             Fuzzer(args.url, args.verb, args.cookie, args.depth, args.payload, args.tchar, args.proxy, args.b64, int(args.urlencode), args.keyword, args.cmd, args.params, custom=CUSTOM)
     elif args.file:
         if args.verb == "POST":
-            print "{}\n[x]{} Can't use the --file option with POST verb!".format(FR,S)
+            print("{}\n[x]{} Can't use the --file option with POST verb!".format(FR,S))
             sys.exit(0)
         urls = extracturls(args.file)
         if urls:
             for url in urls:
                 if '*' in url: CUSTOM=True
                 Fuzzer(url, args.verb, args.cookie, args.depth, args.payload, args.tchar, args.proxy, args.b64, int(args.urlencode), args.keyword, args.cmd, args.params, custom=CUSTOM)
-    else: 
-        print """usage: fdsploit.py [-u  | -f ] [-h] [-p] [-d] [-e {0,1,2}] [-t] [-b] [-x] [-c]
+    else:
+        print("""usage: fdsploit.py [-u  | -f ] [-h] [-p] [-d] [-e {0,1,2}] [-t] [-b] [-x] [-c]
                    [-v] [--params  [...]] [-k] [-a] [--cmd]
-                   [--lfishell {None,simple,expect,input}]"""
+                   [--lfishell {None,simple,expect,input}]""")
 #_EOF
