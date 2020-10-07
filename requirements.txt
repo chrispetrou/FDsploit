@@ -1,7 +1,5 @@
 bs4
-hashlib
 requests
-urlparse
 colorama
 argparse
 html5lib

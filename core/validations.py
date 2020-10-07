@@ -54,10 +54,10 @@ def validateURL(url):
         if validators.url(url):
             return url
         else:
-            print '\n{}[x] Invalid url!{}\n'.format(FR,S)
-            sys.exit(0)       
-    except Exception, e:
-        print e
+            print('\n{}[x] Invalid url!{}\n'.format(FR,S))
+            sys.exit(0)
+    except Exception as e:
+        print(e)
         sys.exit(0)
 
 
