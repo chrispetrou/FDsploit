@@ -131,4 +131,4 @@ Feedback and contributions are welcome. If you find any bug or have a feature re
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
