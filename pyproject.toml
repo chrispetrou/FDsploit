@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "fdsploit"
+version = "1.2"
+description = "File inclusion & directory traversal fuzzer/enumeration & exploitation framework"
+homepage = "https://github.com/chrispetrou/FDsploit"
+authors = ["Christophoros Petrou (game0ver)"]
+maintainers = ["Fabian Affolter <fabian@affolter-engineering.ch>"]
+license = "GPL-3.0-only"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+beautifulsoup4 = "^4.9"
+requests = {extras = ["security"], version = "^2.25"}
+colorama = "^0.4"
+html5lib = "^1.1"
+validators = "^0.18."
+fake_useragent = "^0.1.11"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+fdsploit = "fdsploit:main"
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
