@@ -17,7 +17,6 @@ from core.validations import *
 warnings.filterwarnings("ignore")
 
 # define some globals
-CUSTOM = False
 HOST, PORT = None, None
 USER_AGENT = 'FDsploit_{}_agent'.format(__version__)
 
@@ -103,10 +102,10 @@ def Fuzzer(url, verb, cookie, depth, payload, tchar, proxy, b64, uenc, keyword, 
     except KeyboardInterrupt:
         sys.exit(0)
 
-
-if __name__ == '__main__':
+def main():
     banner()
     args = console()
+    CUSTOM = False
     if args.url or args.file:
         if args.payload.startswith('/'): args.payload = args.payload[1:]
         if args.useragent: USER_AGENT = genUA()
@@ -141,4 +140,7 @@ if __name__ == '__main__':
         print("""usage: fdsploit.py [-u  | -f ] [-h] [-p] [-d] [-e {0,1,2}] [-t] [-b] [-x] [-c]
                    [-v] [--params  [...]] [-k] [-a] [--cmd]
                    [--lfishell {None,simple,expect,input}]""")
-#_EOF
+
+
+if __name__ == '__main__':
+    main()
